@@ -1,111 +1,94 @@
 import java.util.Scanner;
+import java.util.Vector;
 
 public class Main {
 	public static void main(String[] args) {
-	    
-		//-----------------------------------------------------------------------------------------
-		/*
-		1) Crear una aplicación que pida al usuario ingresar los datos necesarios para crear un 
-		objeto de la clase Persona. 
-		*/
-		Persona p1 = new Persona();
+	  
+		Producto p1 = new Producto("Choclo"      ,200);
+		Producto p2 = new Producto("Arvejas"     ,300);
+		Producto p3 = new Producto("Champiniones",400);
+		Producto p4 = new Producto("Pollo"       ,500);
+		Producto p5 = new Producto();
 
-		System.out.println("Isertar nombre: ");
-		Scanner inputName = new Scanner(System.in);
-		String name      = inputName.nextLine();
-		p1.setNombre(name);
-
-		System.out.println("Isertar edad: ");
-		Scanner inputEdad = new Scanner(System.in);
-		int    edad      = inputEdad.nextInt();
-		p1.setEdad(edad);
-
-		System.out.println("Isertar direccion: ");
-		Scanner inputDireccion = new Scanner(System.in);
-		String direccion = inputDireccion.nextLine();
-		p1.setDireccion(direccion);
-
-		System.out.println("Isertar dni: ");
-		Scanner inputDni = new Scanner(System.in);
-		int    dni       = inputDni.nextInt();
-		p1.setDni(dni);
-
-
-		System.out.println("Isertar telefono: ");
-		Scanner inputTelefono = new Scanner(System.in);
-		int    telefono  = inputTelefono.nextInt();
-		p1.setTelefono(telefono);
-
-		//-----------------------------------------------------------------------------------------
-		/* 
-		2) Crear la instancia de la clase Persona e imprimir cuáles fueron los datos ingresados 
-		utilizando "getters".
-		*/
-		p1.sayData(p1.getNombre(),p1.getDireccion(),p1.getEdad(),p1.getTelefono(),p1.getDni());
-		
-		//---------------------------------------------------------------------------
-		/*
-		3) Ofrecerle al usuario la opción de cambiar uno de sus datos (el usuario deberá elegir), 
-		realizar el cambio utilizando "setters" e imprimir nuevamente los datos del objeto creado.
-		 */
-		boolean sno=true;
-		while(sno){
-			System.out.println("1. Modificar nombre.    ");
-			System.out.println("2. Modificar edad.      ");
-			System.out.println("3. Modificar dni.       ");
-			System.out.println("4. Modificar telefono.  ");
-			System.out.println("5. Modificar direccion. ");
+		boolean menu1=true;
+		boolean menu2=true;
+		while(menu1){
+			System.out.println("1. Insertar producto. ");
+			System.out.println("2. Iniciar registro. ");
+			System.out.println("3. Salir. ");
 			Scanner eleccionInput = new Scanner(System.in);
 			int eleccion = eleccionInput.nextInt();
 
 			switch(eleccion){
 				case 1:
-					System.out.println("Isertar nombre nuevo: ");
-					Scanner inputName2 = new Scanner(System.in);
-					String  Name2      = inputName2.nextLine();
-					sno=false;
-					p1.setNombre(Name2);
+					System.out.println("Insertar nombre: ");
+					Scanner inputName = new Scanner(System.in);
+					String name = inputName.nextLine();
+					p5.setNombre(name);
+
+					System.out.println("Insertar precio: ");
+					Scanner inputPrecio = new Scanner(System.in);
+					float   precio = inputPrecio.nextFloat();
+					p5.setPrecio(precio);
 				break;
 				case 2:
-					System.out.println("Isertar edad nueva: ");
-					Scanner inputEdad2 = new Scanner(System.in);
-					int     Edad2      = inputEdad2.nextInt();
-					sno=false;
-					p1.setEdad(Edad2);
+					float total=0;
+					while(menu2){
+						System.out.println("Productos: ");
+						System.out.println("1. " + p1.getNombre() + " " + p1.getPrecio());
+						System.out.println("2. " + p2.getNombre() + " " + p2.getPrecio());
+						System.out.println("3. " + p3.getNombre() + " " + p3.getPrecio());
+						System.out.println("4. " + p4.getNombre() + " " + p4.getPrecio());
+						System.out.println("5. " + p5.getNombre() + " " + p5.getPrecio());
+						System.out.println("6. Terminar registro ");
+						System.out.println("Total: " + total);
+
+
+						Scanner productInput  = new Scanner(System.in);
+						int     productChosen = productInput.nextInt();
+
+						switch(productChosen){
+							case 1:
+								total+=p1.getPrecio();
+							break;
+							case 2:
+								total+=p2.getPrecio();
+							break;
+							case 3:
+								total+=p3.getPrecio();
+							break;
+							case 4:
+								total+=p4.getPrecio();
+							break;
+							case 5:
+								total+=p5.getPrecio();
+							break;
+							case 6:
+								menu2=false;
+							break;
+							default:
+								System.out.println("valor invalido :(((.");
+							break;
+						}
+
+					}
+					System.out.println("Total: " + total);
 				break;
 				case 3:
-					System.out.println("Isertar dni nuevo: ");
-					Scanner inputDni2 = new Scanner(System.in);
-					int     Dni2      = inputDni2.nextInt();
-					sno=false;
-					p1.setDni(Dni2);
+					menu1=false;
 				break;
-				case 4:
-					System.out.println("Isertar telefono nuevo: ");
-					Scanner inputTelefono2 = new Scanner(System.in);
-					int     telefono2      = inputTelefono2.nextInt();
-					sno=false;
-					p1.setTelefono(telefono2);
+				default:
+					System.out.println("Valor invalido :(. ");
 				break;
-				case 5:
-					System.out.println("Isertar direccion nueva: ");
-					Scanner inputDireccion2 = new Scanner(System.in);
-					String  Direccion2      = inputDireccion2.nextLine();
-					sno=false;
-					p1.setDireccion(Direccion2);
 
-				break;
-				default:	
-					System.out.println("Numero invalido, mal ahi. ");
-					sno=true;	
-				break;
 			}
+
+
 		}
-		p1.sayData(p1.getNombre(),p1.getDireccion(),p1.getEdad(),p1.getTelefono(),p1.getDni());
-		
 
 
-		//---------------------------------------------------------------------------
+
+
 		
 	}
 	
